@@ -1,0 +1,30 @@
+#为了Fegin开启hystrix功能，Spring Cloud默认已经为Feign整合了Hystrix，我们只需要开启
+feign:
+  #启动熔断处理机制，熔断处理机制默认是关闭
+  hystrix:
+    enabled: true
+
+------------------------------------------------------------
+默认情况下，feign通过jdk中的HttpURLConnection向下游服务发起http请求,情况下，由于缺乏连接池的支持，
+在达到一定流量的后服务肯定会出问题。
+
+解决方案：
+默认配置显然不足以支撑生产环境的服务，因此我们需要使用更加完备的方案。下面我们以HttpClient作为事例，来看一下怎样改变feign的底层http方案
+1.pom文件增加feign-httpclient的依赖（请注意与feign-core的版本保持一致）
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-httpclient</artifactId>
+    <version>9.4.0</version>
+</dependency>
+
+2.application.yml配置激活
+feign:
+  httpclient:
+    enabled: true
+    max-connections: 1000
+    max-connections-per-route: 300
+
+
+
+怎样配置Feign使用HttpClient:
+https://www.jianshu.com/p/d063c40df8d6

@@ -1,0 +1,28 @@
+熔断是针对于Eureka客户端服务调用者的，因此只需要在consumer中配置就可以了，在provider中配置无效
+
+启动熔断处理机制，熔断处理机制是针对Eureka客户端服务调用方的，在Eureka客户端服务提供方配置无效
+feign:
+  hystrix:
+    enabled: true
+
+
+hystrix:
+   #设置全局超时时间为3秒，还可以针对单个方法
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 1000
+
+
+#配置Eureka服务能够同时支持多少请求，超过的请求可以通过熔断降级处理，如果没有配置熔断降级，就会有熔断处理，否则就会直接返回500
+hystrix:
+  #设置全局超时时间为10秒，还可以针对单个方法
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
+  threadpool.default:
+      #最大线程数决定了Eureka服务能同时支持多少请求个数，超过的请求可通过熔断降级
+      #模拟两个请求同时访问，一个请求正常，在5秒后返回结果，另一个请求异常抛出RejectedExecutionException后直接返回
+      #核心线程数，当核心线程不够用的时候会创建新线程，但不会超过最大线程数
+      coreSize: 1
+      #当核心线程不够用的时候，超过了最大线程数之后的请求会被hystrix降级处理，即调用hystrxi中的fallback属性指定的降级方法。如果没有指定降级方法，则会默认返回null
+      maximumSize: 1
+      #要使用maximumSize，则必须配置次参数
+      allowMaximumSizeToDivergeFromCoreSize: true
+
+

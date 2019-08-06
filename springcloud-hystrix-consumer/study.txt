@@ -1,0 +1,15 @@
+熔断是针对于Eureka客户端服务调用者的，因此只需要在consumer中配置就可以了，在provider中配置无效
+
+启动熔断处理机制，熔断处理机制是针对Eureka客户端服务调用方的，在Eureka客户端服务提供方配置无效
+feign:
+  hystrix:
+    enabled: true
+
+
+hystrix:
+   #设置全局超时时间为3秒，还可以针对单个方法
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 1000
+
+
+测试：
+http://localhost:8763/hello

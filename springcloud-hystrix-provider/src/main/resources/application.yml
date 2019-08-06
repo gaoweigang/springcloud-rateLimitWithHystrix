@@ -1,0 +1,29 @@
+server:
+  port: 8762
+
+spring:
+  application:
+    name: service-provider
+
+management:
+  context-path: /
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #服务提供方 将服务注册到注册中心
+    registerWithEureka: true
+    #该模块仅作为服务提供者，因此不需要从注册中心拉取服务
+    fetchRegistry: false
+    serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+    #开启健康检查
+    healthcheck:
+        enable: true
+
+
+
+
+
+msg: Hello

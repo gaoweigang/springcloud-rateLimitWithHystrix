@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="springcloud-feign-register" />
+        <module name="springcloud-hystrix-common" />
+        <module name="springcloud-hystrix-consumer" />
+        <module name="springcloud-hystrix-provider" />
+        <module name="springcloud-hystrix-provider-stub" />
+        <module name="springcloud-hystrix-register" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="springcloud-feign-register" target="1.8" />
+      <module name="springcloud-hystrix-common" target="1.8" />
+      <module name="springcloud-hystrix-consumer" target="1.8" />
+      <module name="springcloud-hystrix-provider" target="1.8" />
+      <module name="springcloud-hystrix-provider-stub" target="1.8" />
+      <module name="springcloud-hystrix-register" target="1.8" />
+      <module name="springcloud-rateLimitWithHystrix" target="1.8" />
+      <module name="springcloud-rateLimitWithHystrix-parent" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

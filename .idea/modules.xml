@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/springcloud-hystrix-common/springcloud-hystrix-common.iml" filepath="$PROJECT_DIR$/springcloud-hystrix-common/springcloud-hystrix-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud-hystrix-consumer/springcloud-hystrix-consumer.iml" filepath="$PROJECT_DIR$/springcloud-hystrix-consumer/springcloud-hystrix-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud-hystrix-provider/springcloud-hystrix-provider.iml" filepath="$PROJECT_DIR$/springcloud-hystrix-provider/springcloud-hystrix-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud-hystrix-provider-stub/springcloud-hystrix-provider-stub.iml" filepath="$PROJECT_DIR$/springcloud-hystrix-provider-stub/springcloud-hystrix-provider-stub.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud-hystrix-register/springcloud-hystrix-register.iml" filepath="$PROJECT_DIR$/springcloud-hystrix-register/springcloud-hystrix-register.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springcloud-rateLimitWithHystrix.iml" filepath="$PROJECT_DIR$/springcloud-rateLimitWithHystrix.iml" />
+    </modules>
+  </component>
+</project>

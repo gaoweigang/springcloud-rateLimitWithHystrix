@@ -1,0 +1,15 @@
+1.SpringCloud系列七：Hystrix 熔断机制（Hystrix基本配置、服务降级、HystrixDashboard服务监控、Turbine聚合监控）
+參考：https://www.cnblogs.com/leeSmall/p/8847652.html
+1、概念：Hystrix 熔断机制
+2、具体内容
+
+所谓的熔断机制和日常生活中见到电路保险丝是非常相似的，当出现了问题之后，保险丝会自动烧断，以保护我们的电器， 那么如果换到了程序之中呢？
+
+当现在服务的提供方出现了问题之后整个的程序将出现错误的信息显示，而这个时候如果不想出现这样的错误信息，而希望替换为一个错误时的内容
+
+
+SpringCloud配置文件详解：
+https://blog.csdn.net/xingbaozhen1210/article/details/80290588
+
+
+hystrix配置详解
