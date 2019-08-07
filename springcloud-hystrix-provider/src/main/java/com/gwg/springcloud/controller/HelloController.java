@@ -61,7 +61,6 @@ public class HelloController implements IHelloRemote{
             fallbackMethod = "printServiceProviderFallback") //服务降级，包含熔断降级，异常处理降级
     public @ResponseBody Result<String> printServiceProvider(@PathVariable("name") String name, @PathVariable("age") int age){
         System.out.println("调用服务开始 start ..........");
-
         //1.服务降级
         try{
             Thread.sleep(1000);
