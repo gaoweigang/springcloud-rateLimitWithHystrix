@@ -6,7 +6,7 @@
         <groupId>com.gwg.springcloud</groupId>
         <artifactId>springcloud-rateLimitWithHystrix</artifactId>
         <version>1.0-SNAPSHOT</version>
-    </parent>
+    </parent>s
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>springcloud-hystrix-consumer</artifactId>
