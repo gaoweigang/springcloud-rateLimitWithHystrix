@@ -21,5 +21,13 @@ public interface IHelloRemote {
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     @ResponseBody Result<String> hello();
 
+    @RequestMapping(value = "/queryUserByName/{name}", method = RequestMethod.GET)
+    public @ResponseBody Result<String> queryUserByName(@PathVariable("name") String name);
+
+    @RequestMapping(value = "/printUser/{name}", method = RequestMethod.GET)
+    public @ResponseBody Result<String> printUser(@PathVariable("name") String name);
+
+    @RequestMapping(value = "/printUserInfo/{name}", method = RequestMethod.GET)
+    public @ResponseBody Result<String> printUserInfo(@PathVariable("name") String name);
 
 }

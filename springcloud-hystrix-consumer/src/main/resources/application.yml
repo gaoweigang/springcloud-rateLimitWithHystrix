@@ -32,12 +32,21 @@ ribbon:
   ConnectTimeout: 60000
 
 hystrix:
+  #设置全局超时时间为10秒，还可以针对单个方法
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 2000
+  #####服务降级配置######################
   #降级配置，当执行失败（run方法抛异常）或者请求被拒绝（资源不足），是否会尝试调用hystrixCommand.getFallback() 。默认为true
   command.default.fallback.enabled: true
+  #####熔断配置，测试客户端熔断#########################
   #在这里仅测试降级，关闭熔断
-  command.default.circuitBreaker.enabled: false
-  #设置全局超时时间为10秒，还可以针对单个方法
-  command.default.execution.isolation.thread.timeoutInMilliseconds: 6000
+  command.default.circuitBreaker.enabled: true
+  #10s内请求失败数量达到20个，断路器开。
+  command.default.circuitBreaker.requestVolumeThreshold: 5
+  #短路多久以后开始尝试是否恢复，默认5s, 注意：时间单位是毫秒
+  command.default.circuitBreaker.sleepWindowInMilliseconds: 60000
+  #出错百分比阈值，当达到此阈值后，开始短路。默认50%
+  command.default.circuitBreaker.errorThresholdPercentage: 50
+  #####限流配置#########################
   threadpool.default:
       #最大线程数决定了Eureka客户端提供的服务能处理的请求个数，超过的请求可通过熔断降级， 模拟两个请求同时访问
       #核心线程数，当核心线程不够用的时候会创建新线程，但不会超过最大线程数

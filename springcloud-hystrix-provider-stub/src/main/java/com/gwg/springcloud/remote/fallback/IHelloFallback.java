@@ -45,6 +45,24 @@ public class IHelloFallback implements FallbackFactory<IHelloRemote> {
                 System.out.println("hello fallback ....");
                 return Result.error(msg);
             }
+
+            @Override
+            public Result<String> queryUserByName(String name) {
+                System.out.println("queryUserByName fallback ....");
+                return Result.error(msg);
+            }
+
+            @Override
+            public Result<String> printUser(String name) {
+                System.out.println("printUser fallback ....");
+                return Result.error(msg);
+            }
+
+            @Override
+            public Result<String> printUserInfo(String name) {
+                System.out.println("printUserInfo fallback ....");
+                return Result.error(msg);
+            }
         };
     }
 }

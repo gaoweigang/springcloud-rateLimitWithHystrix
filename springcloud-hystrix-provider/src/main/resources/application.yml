@@ -22,7 +22,35 @@ eureka:
     healthcheck:
         enable: true
 
+##开启hystrix，hystrix里面的功能有限流，降级，熔断
+feign:
+  #开启feign使用hystrix,Spring Cloud默认已经为Feign整合了Hystrix，我们只需要开启
+  hystrix:
+    enabled: true
 
+#注意：在服务端开启熔断和服务降级必须配置@HystrixCommand才会有效，@HystrixCommand没有具体指定配置，则会使用yml里面的全局配置，然后才是默认配置
+###重要的事：下面的配置仅对服务端有效，客户端会使用客户端配置#####
+hystrix:
+  #开启服务降级，当执行失败（run方法抛异常）或者请求被拒绝（资源不足），是否会尝试调用hystrixCommand.getFallback() 。默认为true
+  command.default.fallback.enabled: true
+  #在这里仅测试降级，关闭熔断，关闭熔断之后，就不会出现短路的现象。注意：熔断和服务降级是两个不同的概念
+  command.default.circuitBreaker.enabled: true
+  #10s内请求失败数量达到20个，断路器开。
+  command.default.circuitBreaker.requestVolumeThreshold: 5
+  #短路多久以后开始尝试是否恢复，默认5s, 注意：时间单位是毫秒
+  command.default.circuitBreaker.sleepWindowInMilliseconds: 120000
+  #出错百分比阈值，当达到此阈值后，开始短路。默认50%
+  command.default.circuitBreaker.errorThresholdPercentage: 50
+  #设置全局超时时间为10秒，还可以针对单个方法
+  command.default.execution.isolation.thread.timeoutInMilliseconds: 300
+  threadpool.default:
+      #最大线程数决定了Eureka客户端提供的服务能处理的请求个数，超过的请求可通过熔断降级， 模拟两个请求同时访问
+      #核心线程数，当核心线程不够用的时候会创建新线程，但不会超过最大线程数
+      coreSize: 1
+      #当核心线程不够用的时候，超过了最大线程数之后的请求会被熔断，当发生熔断之后我们可以使用hystrix进行服务降级处理，即调用hystrix中的fallback属性指定的降级方法。如果没有指定降级方法，则会默认返回null
+      maximumSize: 1
+      #要使用maximumSize，则必须配置次参数
+      allowMaximumSizeToDivergeFromCoreSize: true
 
 
 

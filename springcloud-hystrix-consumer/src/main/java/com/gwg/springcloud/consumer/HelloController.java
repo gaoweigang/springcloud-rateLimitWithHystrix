@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class HelloController {
@@ -28,11 +25,37 @@ public class HelloController {
      * 应用Consumer调用应用Provider的服务printServiceProvider
      * @return
      */
-    @RequestMapping("/hello")
-    public @ResponseBody Result hello() {
+    @RequestMapping("/printServiceProvider")
+    public @ResponseBody Result printServiceProvider() {
         System.out.println(Thread.currentThread().getId()+", 调用开始 start ****************");
         Result<String> result = helloRemote.printServiceProvider("gaoweigang", 11);
         System.out.println(Thread.currentThread().getId()+", 获取结果 "+result.getMessage());
         return result;
     }
+
+    /**
+     * 应用Consumer调用应用Provider的服务printServiceProvider
+     * @return
+     */
+    @RequestMapping(value = "/queryUserByName", method = RequestMethod.GET)
+    public @ResponseBody Result queryUserByName() {
+        System.out.println(Thread.currentThread().getId()+", 调用开始 start ****************");
+        Result<String> result = helloRemote.queryUserByName("gaoweigang");
+        System.out.println(Thread.currentThread().getId()+", 获取结果 "+result.getMessage());
+        return result;
+    }
+
+    /**
+     * 应用Consumer调用应用Provider的服务printServiceProvider
+     * @return
+     */
+    @RequestMapping(value = "/printUserInfo", method = RequestMethod.GET)
+    public @ResponseBody Result printUserInfo() {
+        System.out.println(Thread.currentThread().getId()+", 调用开始 start ****************");
+        Result<String> result = helloRemote.printUserInfo("gaoweigang");
+        System.out.println(Thread.currentThread().getId()+", 获取结果 "+result.getMessage());
+        return result;
+    }
+
+
 }
